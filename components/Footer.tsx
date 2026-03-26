@@ -35,19 +35,10 @@ const Footer = () => {
 
          <div className="flex flex-col md:flex-row justify-between w-full items-center pt-10 border-t border-white/5 gap-8">
             {/* Copy */}
-            <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none">
-               &copy; 2026 Bhanu Prakash Narala. Built for the <span className="text-slate-400">Future.</span>
+            <p className="text-[10px] font-black text-slate-700 uppercase tracking-[0.2em] leading-none mb-4 md:mb-0 text-center md:text-left">
+               &copy; {new Date().getFullYear()} Bhanu Prakash Narala. Built for the <span className="text-slate-400">Future.</span>
             </p>
 
-            {/* Links */}
-            <div className="flex gap-8">
-               {["Privacy", "Archive", "Journal"].map((item) => (
-                  <a key={item} href="#" className="text-[10px] font-black text-slate-700 hover:text-blue-500 uppercase tracking-widest transition-colors">
-                     {item}
-                  </a>
-               ))}
-            </div>
-            
             {/* Build Status */}
             <div className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10 group cursor-default shadow-xl">
                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />

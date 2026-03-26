@@ -5,50 +5,7 @@ import { ExternalLink, MessageCircle, Monitor, Sparkles, Database, Code, Globe, 
 import { useRef, useState } from "react";
 import { Magnetic } from "./Magnetic";
 
-// Robust 3D Tilt Card Helper
-const TiltCard = ({ children }: { children: React.ReactNode }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="relative h-full w-full rounded-[3.5rem]"
-    >
-      <div style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }} className="h-full w-full">
-        {children}
-      </div>
-    </motion.div>
-  );
-};
 
 const ProjectSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -120,50 +77,46 @@ const ProjectSection = () => {
                viewport={{ once: true }}
                className="group perspective"
             >
-            <Magnetic>
-              <TiltCard>
-                 <div className={`p-10 flex flex-col h-full bg-gradient-to-br ${proj.accent} border border-white/5 rounded-[3.5rem] backdrop-blur-3xl overflow-hidden group-hover:border-emerald-500/20 transition-all duration-700 shadow-2xl shadow-black/80`}>
-                    {/* Media Window */}
-                    <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-12 border border-white/10 group-hover:border-white/30 transition-all duration-700 shadow-inner">
-                       <img 
-                          src={proj.image} 
-                          alt={proj.title} 
-                          className="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-[2000ms] ease-out brightness-75 group-hover:brightness-100"
-                          onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"; }}
-                       />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                       <Sparkles size={16} className="absolute bottom-6 right-6 text-emerald-500 opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
-                    </div>
+                  <div className={`p-10 flex flex-col h-full bg-gradient-to-br ${proj.accent} border border-white/5 rounded-[3.5rem] backdrop-blur-3xl overflow-hidden group-hover:border-emerald-500/20 transition-all duration-700 shadow-2xl shadow-black/80 relative`}>
+                     {/* Media Window */}
+                     <div className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden mb-12 border border-white/10 group-hover:border-white/30 transition-all duration-700 shadow-inner">
+                        <img 
+                           src={proj.image} 
+                           alt={proj.title} 
+                           className="w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[2000ms] ease-out brightness-75 group-hover:brightness-100"
+                           onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"; }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Sparkles size={16} className="absolute bottom-6 right-6 text-emerald-500 opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
+                     </div>
 
-                    {/* Meta */}
-                    <div className="flex justify-between items-start mb-3">
-                      <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 opacity-60 group-hover:opacity-100 transition-opacity italic">{proj.category}</span>
-                      <span className="text-[9px] font-black uppercase tracking-widest text-white/20 bg-white/5 px-2 py-0.5 rounded border border-white/5">Manuscript: Stable</span>
-                    </div>
-                    <h3 className="text-3xl font-black text-white mb-6 tracking-tighter group-hover:text-emerald-500 transition-all duration-500">{proj.title}</h3>
-                    <p className="text-slate-500 text-sm font-medium leading-relaxed mb-10 group-hover:text-slate-400 transition-colors line-clamp-4">{proj.desc}</p>
+                     {/* Meta */}
+                     <div className="flex justify-between items-start mb-3">
+                       <span className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600 opacity-60 group-hover:opacity-100 transition-opacity italic">{proj.category}</span>
+                       <span className="text-[9px] font-black uppercase tracking-widest text-white/20 bg-white/5 px-2 py-0.5 rounded border border-white/5">Manuscript: Stable</span>
+                     </div>
+                     <h3 className="text-3xl font-black text-white mb-6 tracking-tighter group-hover:text-emerald-500 transition-all duration-500">{proj.title}</h3>
+                     <p className="text-slate-500 text-sm font-medium leading-relaxed mb-10 group-hover:text-slate-400 transition-colors line-clamp-4">{proj.desc}</p>
 
-                    {/* Badges */}
-                    <div className="flex flex-wrap gap-2 mb-12">
-                       {proj.tech.map(t => (
-                          <span key={t} className="px-4 py-1.5 bg-black/40 border border-white/5 text-[9px] font-black text-slate-500 uppercase tracking-widest rounded-lg group-hover:text-white group-hover:bg-emerald-500 transition-all">
-                             {t}
-                          </span>
-                       ))}
-                    </div>
+                     {/* Badges */}
+                     <div className="flex flex-wrap gap-2 mb-12">
+                        {proj.tech.map(t => (
+                           <span key={t} className="px-4 py-1.5 bg-black/40 border border-white/5 text-[9px] font-black text-slate-500 uppercase tracking-widest rounded-lg group-hover:text-white group-hover:bg-emerald-500 transition-all">
+                              {t}
+                           </span>
+                        ))}
+                     </div>
 
-                    {/* Action Hub */}
-                    <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
-                       <a href={proj.link} target="_blank" className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all flex items-center gap-2">
-                         <Code size={14} /> Repository
-                       </a>
-                       <div className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-emerald-600 group-hover:scale-110 transition-all">
-                         <ArrowRight size={18} />
-                       </div>
-                    </div>
-                 </div>
-              </TiltCard>
-            </Magnetic>
+                     {/* Action Hub */}
+                     <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
+                        <a href={proj.link} target="_blank" className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all flex items-center gap-2">
+                          <Code size={14} /> Repository
+                        </a>
+                        <a href={proj.link} target="_blank" className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white group-hover:bg-emerald-600 hover:scale-110 transition-all">
+                          <ExternalLink size={18} />
+                        </a>
+                     </div>
+                  </div>
           </motion.div>
           ))}
         </div>
