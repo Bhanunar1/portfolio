@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MessageCircle, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send, CheckCircle2, XCircle } from "lucide-react";
+import { useState } from "react";
 
 // Fallback Icons
 const LinkedIn = ({ size }: { size: number }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>;
@@ -15,6 +16,37 @@ const ContactSection = () => {
     { icon: GitHub, href: "https://github.com/Bhanunar1", label: "GitHub" },
     { icon: XIcon, href: "https://x.com/bhan67510", label: "Twitter" },
   ];
+
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("loading");
+    
+    const target = e.target as HTMLFormElement;
+    const formData = new FormData(target);
+    formData.append("_subject", "New Mission Signal from Portfolio!");
+    formData.append("_template", "box");
+    
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/bhanuprakashnarala@gmail.com", {
+        method: "POST",
+        body: formData,
+      });
+      
+      if (res.ok) {
+        setStatus("success");
+        target.reset();
+        setTimeout(() => setStatus("idle"), 5000); // Reset after 5s
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 5000);
+      }
+    } catch (err) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
+  };
 
   return (
     <section id="signal" className="py-24 md:py-32 relative overflow-hidden">
@@ -84,28 +116,42 @@ const ContactSection = () => {
 
         {/* Contact Form */}
         <div className="flex-1 w-full bg-white/[0.01] border border-white/[0.05] p-10 md:p-14 rounded-[3.5rem] backdrop-blur-2xl relative shadow-2xl">
-           <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+           <form className="space-y-10" onSubmit={handleSubmit}>
+              <input type="text" name="_honey" style={{ display: 'none' }} />
+              <input type="hidden" name="_captcha" value="false" />
+              
               <div className="grid grid-cols-1 gap-8">
                  <div className="space-y-4">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full bg-white/5 border border-white/5 rounded-2xl p-5 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all font-medium" />
+                    <input type="text" name="name" required placeholder="John Doe" className="w-full bg-white/5 border border-white/5 rounded-2xl p-5 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all font-medium" />
                  </div>
                  <div className="space-y-4">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Email Hub</label>
-                    <input type="email" placeholder="john@company.com" className="w-full bg-white/5 border border-white/5 rounded-2xl p-5 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all font-medium" />
+                    <input type="email" name="email" required placeholder="john@company.com" className="w-full bg-white/5 border border-white/5 rounded-2xl p-5 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all font-medium" />
                  </div>
               </div>
               <div className="space-y-4">
                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">The Message</label>
-                 <textarea rows={6} placeholder="Describe the mission..." className="w-full bg-white/5 border border-white/5 rounded-3xl p-6 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all font-medium resize-none"></textarea>
+                 <textarea name="message" required rows={6} placeholder="Describe the mission..." className="w-full bg-white/5 border border-white/5 rounded-3xl p-6 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.08] transition-all font-medium resize-none"></textarea>
               </div>
 
               <motion.button
+                type="submit"
+                disabled={status === "loading" || status === "success"}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-6 bg-blue-600 hover:bg-blue-500 text-white rounded-3xl font-black text-sm uppercase tracking-[0.3em] flex items-center justify-center gap-4 transition-all shadow-xl shadow-blue-500/20"
+                className={`w-full py-6 rounded-3xl font-black text-sm uppercase tracking-[0.3em] flex items-center justify-center gap-4 transition-all shadow-xl disabled:opacity-70 disabled:cursor-not-allowed ${
+                  status === "success" 
+                  ? "bg-emerald-600 text-white shadow-emerald-500/20" 
+                  : status === "error"
+                  ? "bg-red-600 text-white shadow-red-500/20"
+                  : "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/20"
+                }`}
               >
-                Transmit Signal <Send size={18} />
+                {status === "idle" && <>Transmit Signal <Send size={18} /></>}
+                {status === "loading" && <span className="animate-pulse">Transmitting...</span>}
+                {status === "success" && <>Signal Received <CheckCircle2 size={18} /></>}
+                {status === "error" && <>Transmission Failed <XCircle size={18} /></>}
               </motion.button>
            </form>
            
