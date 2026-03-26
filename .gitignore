@@ -1,0 +1,11 @@
+node_modules
+.next
+.DS_Store
+*.local
+.env
+.npm
+package-lock.json
+public/assets/*
+!public/assets/.gitkeep
+archive/
+assests/
