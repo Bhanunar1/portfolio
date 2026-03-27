@@ -150,9 +150,7 @@ const ProjectSection = () => {
                    <div className="flex items-center md:justify-end gap-1 group-hover:text-emerald-400 transition-colors">
                       <span className="text-5xl md:text-6xl font-black text-white tracking-tighter block group-hover:text-emerald-400 transition-colors">15</span>
                       <span className="text-3xl font-black text-emerald-500 group-hover:text-emerald-400">+</span>
-                   </div>
-                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Public Repositories</span>
-                 </div>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Projects and <b style={{color:"blue",fontSize:"20px"}}>6</b> Repositories</span>
                  <div className="h-16 w-16 md:h-20 md:w-20 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-emerald-600 transition-all duration-500 transform group-hover:scale-110 shadow-2xl">
                     <span className="text-4xl font-light leading-none">+</span>
                  </div>
