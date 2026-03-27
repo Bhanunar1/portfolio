@@ -120,6 +120,46 @@ const ProjectSection = () => {
           </motion.div>
           ))}
         </div>
+
+        {/* Explore More Projects Metric */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 w-full"
+        >
+          <a
+            href="https://github.com/Bhanunar1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block relative p-10 md:p-14 bg-gradient-to-r from-white/[0.02] to-emerald-500/[0.02] border border-white/5 hover:border-emerald-500/30 rounded-[3.5rem] transition-all duration-700 overflow-hidden shadow-xl"
+          >
+            <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            
+            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-0">
+               <div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-500 mb-4 block">The Extended Archive</span>
+                 <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none mb-4">
+                   Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 italic">More.</span>
+                 </h3>
+                 <p className="text-slate-400 font-medium max-w-md">Explore the rest of my open-source algorithms, architectures, and software experiments on GitHub.</p>
+               </div>
+               
+               <div className="flex items-center gap-8 md:gap-12 w-full md:w-auto justify-between md:justify-end">
+                 <div className="text-left md:text-right">
+                   <div className="flex items-center md:justify-end gap-1 group-hover:text-emerald-400 transition-colors">
+                      <span className="text-5xl md:text-6xl font-black text-white tracking-tighter block group-hover:text-emerald-400 transition-colors">15</span>
+                      <span className="text-3xl font-black text-emerald-500 group-hover:text-emerald-400">+</span>
+                   </div>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Public Repositories</span>
+                 </div>
+                 <div className="h-16 w-16 md:h-20 md:w-20 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-emerald-600 transition-all duration-500 transform group-hover:scale-110 shadow-2xl">
+                    <span className="text-4xl font-light leading-none">+</span>
+                 </div>
+               </div>
+            </div>
+          </a>
+        </motion.div>
       </div>
 
       {/* Dynamic Marquee - The 'Live Figma' Touch */}
