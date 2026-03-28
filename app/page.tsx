@@ -8,6 +8,7 @@ import ProjectSection from "../components/ProjectSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import LMASection from "../components/LMASection";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 export default function Home() {
@@ -36,6 +37,8 @@ export default function Home() {
         <ProjectSection />
         <ContactSection />
       </div>
+
+      <LMASection />
 
       <Footer />
     </main>
