@@ -12,7 +12,7 @@ const XIcon = ({ size }: { size: number }) => <svg width={size} height={size} vi
 
 const ContactSection = () => {
   const socialLinks = [
-    { icon: LinkedIn, href: "https://linkedin.com/in/bhanu-prakash-narala", label: "LinkedIn" },
+    { icon: LinkedIn, href: "https://www.linkedin.com/in/bhanu-prakash-narala-473255260/", label: "LinkedIn" },
     { icon: GitHub, href: "https://github.com/Bhanunar1", label: "GitHub" },
     { icon: XIcon, href: "https://x.com/bhan67510", label: "Twitter" },
   ];

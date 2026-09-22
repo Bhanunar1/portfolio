@@ -74,7 +74,7 @@ export default function ResumePage() {
       level: "B.Tech in Computer Science & Engineering",
       institution: "University College of Engineering, Narasaraopet",
       year: "2022 – 2026",
-      stat: "70%"
+      stat: "71.4%"
     },
     {
       level: "Intermediate (XII – Science)",
@@ -152,7 +152,7 @@ export default function ResumePage() {
            <span className="flex items-center gap-2 hover:text-white transition-colors"><Mail size={14} className="text-emerald-500" /> bhanuprakashnarala@gmail.com</span>
            <span className="flex items-center gap-2 hover:text-white transition-colors"><Phone size={14} className="text-emerald-500" /> +91 8919084134</span>
            <span className="flex items-center gap-2 hover:text-white transition-colors"><MapPin size={14} className="text-emerald-500" /> AP, INDIA</span>
-           <a href="https://linkedin.com/in/bhanu-prakash-narala" className="flex items-center gap-2 hover:text-white transition-colors"><LinkedInIcon size={14} /> LinkedIn</a>
+           <a href="https://www.linkedin.com/in/bhanu-prakash-narala-473255260/" className="flex items-center gap-2 hover:text-white transition-colors"><LinkedInIcon size={14} /> LinkedIn</a>
            <a href="https://github.com/Bhanunar1" className="flex items-center gap-2 hover:text-white transition-colors"><GitHubIcon size={14} /> GitHub</a>
         </motion.div>
       </header>

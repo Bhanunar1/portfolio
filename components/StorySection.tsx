@@ -29,7 +29,7 @@ const StorySection = () => {
   }, [isDirectorMode]);
 
   const journeyHighlights = [
-    { title: "Academic Foundation", desc: "Computer Science & Engineering undergraduate at UCE Narasaraopet (2022-2026). Currently maintaining a 70% merit.", icon: BookOpen },
+    { title: "Academic Foundation", desc: "Computer Science & Engineering undergraduate at UCE Narasaraopet (2022-2026). Currently maintaining a 71.4% merit.", icon: BookOpen },
     { title: "Venture Genesis", desc: "Establishing LMA Tech Associations as a student-led hub for innovation and commercial software solutions.", icon: TrendingUp },
     { title: "Creative Fiction", desc: "Drafting intricate narratives as 'kal_krish'. Building worlds both in code and on the page.", icon: Layers },
     { title: "Original Vision", desc: "Pivoting towards massive-scale concept directing and powerful visual storytelling architectures.", icon: Target },
