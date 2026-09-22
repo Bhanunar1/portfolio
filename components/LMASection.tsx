@@ -10,7 +10,7 @@ const LMASection = () => {
     <section className="py-20 flex justify-center items-center">
       <Magnetic>
         <motion.a
-          href="https://lma-orpin.vercel.app"
+          href="https://lma-1-eyp8.onrender.com"
           target="_blank"
           rel="noopener noreferrer"
           className="w-36 h-36 rounded-full flex items-center justify-center group relative cursor-pointer"
